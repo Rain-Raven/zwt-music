@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxa.backgroud.modular.system.mapper.SecondCategoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zxa.backgroud.modular.system.entity.SecondCategory">
+        <id column="id" property="id"/>
+        <result column="category_id" property="categoryId"></result>
+        <result column="name" property="name"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,category_id AS categoryId,name,status,sort,create_time,update_time
+    </sql>
+
+
+    <select id="list" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from t_secondary_category
+        <where> 1 = 1
+        </where>
+        order by sort DESC
+    </select>
+
+    <select id="getAll" resultType="com.zxa.backgroud.modular.system.entity.Category">
+        select
+        <include refid="Base_Column_List"/>
+        from t_secondary_category
+    </select>
+
+</mapper>

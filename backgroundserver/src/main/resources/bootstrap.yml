@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: backgroud-server
+  cloud:
+    config:
+      uri: http://120.79.225.94:8888/
+      profile: dev
+      label: master
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    cache: false
+  http:
+    converters:
+      preferred-json-mapper: gson
+server:
+  port: 8002

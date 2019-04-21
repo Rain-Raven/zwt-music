@@ -1,0 +1,59 @@
+server:
+  port: 80
+  max-http-header-size: 10240
+
+guns:
+  swagger-open: true                #是否开启swagger (true/false)
+  kaptcha-open: false               #是否开启登录时验证码 (true/false)
+  spring-session-open: false        #是否开启spring session,如果是多机环境需要开启(true/false)
+  session-invalidate-time: 1800     #session失效时间(只在单机环境下生效，多机环境在SpringSessionConfig类中配置) 单位：秒
+  session-validation-interval: 900  #多久检测一次失效的session(只在单机环境下生效) 单位：秒
+
+beetl:
+  resource-auto-check: true         #热加载beetl模板，开发时候用
+
+spring:
+  profiles:
+    active: @spring.active@
+  mvc:
+    view:
+      prefix: /pages
+  devtools:
+    restart:
+      enabled: false
+      additional-paths: src/main/java
+      exclude: assets/**,pages/**
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 100MB
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/brisk_step?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=true&serverTimezone=UTC
+    username: root
+    password: root
+    filters: wall,mergeStat
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    maxActive: 20
+    initialSize: 1
+    maxWait: 100
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+mybatis-plus:
+  typeAliasesPackage: com.zxa.backgroud.modular.system.model
+
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 600
+  tracker-list: 120.79.225.94:22122
+  pool:
+    jmx-enabled: false
+
+log:
+  path: backgroud-logs
